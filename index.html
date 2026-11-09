@@ -28,7 +28,7 @@
 
   --hangul-color: #111113;
   --label-color: #6e6e73;
-  --del-color: #3a3a3c; /* Cinzento um bocadinho mais suave para a tecla delete */
+  --del-color: #3a3a3c;
 
   color-scheme: light;
 }
@@ -57,7 +57,7 @@
 
     --hangul-color: #ffffff;
     --label-color: #98989d;
-    --del-color: #d1d1d6; /* Cinzento suave adaptado para o modo escuro */
+    --del-color: #d1d1d6;
 
     color-scheme: dark;
   }
@@ -195,8 +195,8 @@ p {
 .bar {
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  justify-content: center;
+  gap: 6px;
+  justify-content: space-between;
 }
 
 button {
@@ -208,13 +208,14 @@ button {
 }
 
 .act {
-  padding: 12px 18px;
+  flex: 1;
+  padding: 0 16px;
   border: 1px solid var(--key-border);
   background: var(--key-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 14px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   transition: all 0.2s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -299,7 +300,6 @@ button {
   font-weight: 600;
 }
 
-/* Cor específica para o símbolo de delete (⌫) */
 .k.del-key b {
   color: var(--del-color);
 }
@@ -376,6 +376,7 @@ code {
   <div class="bar">
     <button class="act" id="copy">Copy</button>
     <button class="act" id="clear">Clear</button>
+    <button class="act" id="undo">Undo</button>
   </div>
 </div>
 
@@ -468,6 +469,14 @@ function updateNumLockUI() {
   }
 }
 
+function performUndo() {
+  cyc = null;
+  if (H.length > 0) {
+    S = H.pop();
+    render();
+  }
+}
+
 function press(code){
   if (code === 'NumLock') {
     numLockActive = !numLockActive;
@@ -484,7 +493,7 @@ function press(code){
       NumpadDecimal: '.'
     };
     if (normalMap[code] !== undefined) {
-      H.push(clone(S));if(H.length>3000)H.shift();
+      H.push(clone(S)); if(H.length > 3000) H.shift();
       put(S, normalMap[code]);
       render();
       return;
@@ -493,14 +502,11 @@ function press(code){
 
   if(code==='NumpadSubtract'||code==='Backspace'){
     cyc=null;
-    if(H.length){
-      S=H.pop();
-    } else {
-      if(S.t) { S.t = S.t.slice(0, -1); }
-      else if(S.v) { S.v = S.v.slice(0, -1); }
-      else if(S.l) { S.l = ''; }
-      else if(S.text.length > 0) { S.text = S.text.slice(0, -1); }
-    }
+    H.push(clone(S)); if(H.length > 3000) H.shift();
+    if(S.t) { S.t = S.t.slice(0, -1); }
+    else if(S.v) { S.v = S.v.slice(0, -1); }
+    else if(S.l) { S.l = ''; }
+    else if(S.text.length > 0) { S.text = S.text.slice(0, -1); }
     render();
     return;
   }
@@ -510,7 +516,7 @@ function press(code){
     if(cyc&&cyc.code===code&&now-cyc.ts<TIMEOUT_MS&&H.length){
       cyc.i=(cyc.i+1)%set.length;cyc.ts=now;S=clone(H[H.length-1]);
     }else{
-      H.push(clone(S));if(H.length>3000)H.shift();
+      H.push(clone(S)); if(H.length > 3000) H.shift();
       cyc={code:code,i:0,ts:now};
     }
     var ch=set[cyc.i];
@@ -518,7 +524,7 @@ function press(code){
     render();return;
   }
   cyc=null;
-  H.push(clone(S));if(H.length>3000)H.shift();
+  H.push(clone(S)); if(H.length > 3000) H.shift();
   if(VK[code])vow(S,VK[code]);
   else if(code==='NumpadAdd'||code==='Space')put(S,' ');
   else if(code==='NumpadEnter'||code==='Enter')put(S,'\n');
@@ -564,8 +570,18 @@ document.getElementById('copy').addEventListener('click',function(e){
   setTimeout(function(){btn.textContent=old},1100);
   btn.blur();
 });
+
 document.getElementById('clear').addEventListener('click',function(e){
-  S={text:'',l:'',v:'',t:''};H=[];cyc=null;render();e.currentTarget.blur();
+  H.push(clone(S)); if(H.length > 3000) H.shift();
+  S={text:'',l:'',v:'',t:''};
+  cyc=null;
+  render();
+  e.currentTarget.blur();
+});
+
+document.getElementById('undo').addEventListener('click',function(e){
+  performUndo();
+  e.currentTarget.blur();
 });
 
 updateNumLockUI();
