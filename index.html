@@ -107,7 +107,7 @@ body {
   background: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--fg);
-  font: 16.1px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", "Noto Sans KR", sans-serif;
+  font: 15.3px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", "Noto Sans KR", sans-serif;
   -webkit-font-smoothing: antialiased;
   display: flex;
   justify-content: center;
@@ -116,49 +116,92 @@ body {
 
 main {
   width: 100%;
-  max-width: 552px;
-  margin: 23px auto;
-  padding: 28px 23px;
+  max-width: 524px;
+  margin: 22px auto;
+  padding: 26px 22px;
   background: var(--glass-bg);
   backdrop-filter: blur(25px) saturate(180%);
   -webkit-backdrop-filter: blur(25px) saturate(180%);
   border: 1px solid var(--glass-border);
-  border-radius: 28px;
+  border-radius: 26px;
   box-shadow: var(--glass-shadow);
 }
 
 h1 {
-  font-size: 1.45rem;
+  font-size: 1.38rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0 0 6px;
 }
 
 p {
-  margin: 0 0 16px;
+  margin: 0 0 15px;
   color: var(--mute);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.45;
 }
 
 .top-section {
   display: flex;
-  gap: 12px;
-  margin-bottom: 18px;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.bar {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+button {
+  font: inherit;
+  color: var(--fg);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.act {
+  flex: 1;
+  padding: 9px 6px;
+  border: 1px solid var(--key-border);
+  background: var(--key-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 11px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.act:hover {
+  background: var(--key-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.act:active {
+  transform: translateY(0);
+  background: var(--key-active);
 }
 
 #out {
-  flex: 1;
-  min-height: 12rem;
-  max-height: 25vh;
-  overflow: auto;
+  width: 100%;
+  height: 11.4rem;
+  min-height: 11.4rem;
+  max-height: 11.4rem;
+  overflow-y: auto;
   background: var(--out-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--key-border);
-  border-radius: 16px;
-  padding: 14px 16px;
-  font-size: 1.65rem;
+  border-radius: 15px;
+  padding: 13px 15px;
+  font-size: 1.56rem;
   line-height: 1.45;
   white-space: pre-wrap;
   word-break: break-all;
@@ -192,54 +235,11 @@ p {
 @keyframes bl { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { #out .caret { animation: none; } }
 
-.bar {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  justify-content: space-between;
-}
-
-button {
-  font: inherit;
-  color: var(--fg);
-  cursor: pointer;
-  border: none;
-  outline: none;
-}
-
-.act {
-  flex: 1;
-  padding: 0 16px;
-  border: 1px solid var(--key-border);
-  background: var(--key-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 14px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  white-space: nowrap;
-  min-width: 95px;
-  text-align: center;
-}
-
-.act:hover {
-  background: var(--key-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.act:active {
-  transform: translateY(0);
-  background: var(--key-active);
-}
-
 .pad {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 62px);
-  gap: 9px;
+  grid-template-rows: repeat(5, 59px);
+  gap: 8px;
 }
 
 .k {
@@ -247,7 +247,7 @@ button {
   background: var(--key-bg);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-radius: 14px;
+  border-radius: 13px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -279,13 +279,13 @@ button {
 }
 
 .k small {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--label-color);
 }
 
 .k b {
-  font-size: 1.15rem;
+  font-size: 1.09rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   font-family: "SF Pro Text", "Noto Sans KR", sans-serif;
@@ -294,7 +294,7 @@ button {
 
 .k.u b {
   color: var(--fg);
-  font-size: 0.85rem;
+  font-size: 0.81rem;
   letter-spacing: 0;
   font-family: inherit;
   font-weight: 600;
@@ -304,15 +304,15 @@ button {
   color: var(--del-color);
 }
 
-.k.v b { font-size: 1.4rem; font-weight: 500; }
+.k.v b { font-size: 1.33rem; font-weight: 500; }
 
 #kp b {
-  font-size: 1.5rem;
+  font-size: 1.42rem;
   font-weight: 600;
 }
 
 #kt b {
-  font-size: 1.15rem;
+  font-size: 1.09rem;
   font-weight: 600;
 }
 
@@ -338,17 +338,17 @@ button {
 }
 
 h2 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  margin: 0 0 9px;
+  margin: 0 0 8px;
   letter-spacing: -0.01em;
 }
 
 ul {
   margin: 0;
-  padding-left: 1.4rem;
+  padding-left: 1.3rem;
   color: var(--mute);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -359,7 +359,7 @@ code {
   border: 1px solid var(--key-border);
   border-radius: 7px;
   padding: 3px 7px;
-  font-size: 0.85em;
+  font-size: 0.81em;
   font-weight: 600;
   color: var(--fg);
   font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
@@ -372,12 +372,13 @@ code {
 <p>Type using your PC's numpad or click on the virtual buttons</p>
 
 <div class="top-section">
-  <div id="out" aria-live="polite"></div>
   <div class="bar">
-    <button class="act" id="copy">Copy</button>
-    <button class="act" id="clear">Clear</button>
-    <button class="act" id="undo">Undo</button>
+    <button class="act" id="copy">📋 Copy</button>
+    <button class="act" id="undo">↩️ Undo</button>
+    <button class="act" id="redo">↪️ Redo</button>
+    <button class="act" id="clear">🗑️ Clear</button>
   </div>
+  <div id="out" aria-live="polite"></div>
 </div>
 
 <div class="pad" id="pad">
@@ -413,7 +414,7 @@ var VT={'1':'ㅣ','2':'ㆍ','22':'ㆍㆍ','3':'ㅡ','12':'ㅏ','21':'ㅓ','23':'
 var CF={'ㄱㅅ':'ㄳ','ㄴㅈ':'ㄵ','ㄴㅎ':'ㄶ','ㄹㄱ':'ㄺ','ㄹㅁ':'ㄻ','ㄹㅂ':'ㄼ','ㄹㅅ':'ㄽ','ㄹㅌ':'ㄾ','ㄹㅍ':'ㄿ','ㄹㅎ':'ㅀ','ㅂㅅ':'ㅄ'};
 var CY={Numpad4:['ㄱ','ㅋ','ㄲ'],Numpad5:['ㄴ','ㄹ'],Numpad6:['ㄷ','ㅌ','ㄸ'],Numpad1:['ㅂ','ㅍ','ㅃ'],Numpad2:['ㅅ','ㅎ','ㅆ'],Numpad3:['ㅈ','ㅊ','ㅉ'],Numpad0:['ㅇ','ㅁ'],NumpadDivide:['?'],NumpadMultiply:['!'],NumpadDecimal:['.',',']};
 var VK={Numpad7:'1',Numpad8:'2',Numpad9:'3'};
-var S={text:'',l:'',v:'',t:''},H=[],cyc=null;
+var S={text:'',l:'',v:'',t:''},H=[],R=[],cyc=null;
 var TIMEOUT_MS=1000;
 var numLockActive = false;
 
@@ -469,10 +470,26 @@ function updateNumLockUI() {
   }
 }
 
+function saveHistory() {
+  H.push(clone(S));
+  if(H.length > 3000) H.shift();
+  R = []; 
+}
+
 function performUndo() {
   cyc = null;
   if (H.length > 0) {
+    R.push(clone(S));
     S = H.pop();
+    render();
+  }
+}
+
+function performRedo() {
+  cyc = null;
+  if (R.length > 0) {
+    H.push(clone(S));
+    S = R.pop();
     render();
   }
 }
@@ -493,7 +510,7 @@ function press(code){
       NumpadDecimal: '.'
     };
     if (normalMap[code] !== undefined) {
-      H.push(clone(S)); if(H.length > 3000) H.shift();
+      saveHistory();
       put(S, normalMap[code]);
       render();
       return;
@@ -502,7 +519,7 @@ function press(code){
 
   if(code==='NumpadSubtract'||code==='Backspace'){
     cyc=null;
-    H.push(clone(S)); if(H.length > 3000) H.shift();
+    saveHistory();
     if(S.t) { S.t = S.t.slice(0, -1); }
     else if(S.v) { S.v = S.v.slice(0, -1); }
     else if(S.l) { S.l = ''; }
@@ -516,7 +533,7 @@ function press(code){
     if(cyc&&cyc.code===code&&now-cyc.ts<TIMEOUT_MS&&H.length){
       cyc.i=(cyc.i+1)%set.length;cyc.ts=now;S=clone(H[H.length-1]);
     }else{
-      H.push(clone(S)); if(H.length > 3000) H.shift();
+      saveHistory();
       cyc={code:code,i:0,ts:now};
     }
     var ch=set[cyc.i];
@@ -524,7 +541,7 @@ function press(code){
     render();return;
   }
   cyc=null;
-  H.push(clone(S)); if(H.length > 3000) H.shift();
+  saveHistory();
   if(VK[code])vow(S,VK[code]);
   else if(code==='NumpadAdd'||code==='Space')put(S,' ');
   else if(code==='NumpadEnter'||code==='Enter')put(S,'\n');
@@ -544,8 +561,9 @@ document.addEventListener('keydown',function(e){
   else if(MAIN[code]&&tag!=='BUTTON'&&tag!=='INPUT'){}
   else return;
   e.preventDefault();
-  if(e.repeat&&code!=='NumpadSubtract'&&code!=='Backspace')return;
-  press(code);flash(code);
+  
+  press(code);
+  flash(code);
 });
 document.getElementById('pad').addEventListener('mousedown',function(e){e.preventDefault()});
 document.getElementById('pad').addEventListener('click',function(e){
@@ -566,13 +584,13 @@ document.getElementById('copy').addEventListener('click',function(e){
     document.body.removeChild(ta);
   }
   try{navigator.clipboard.writeText(t).catch(fb)}catch(x){fb()}
-  var old=btn.textContent;btn.textContent='Copied';
+  var old=btn.textContent;btn.textContent='📋 Copied';
   setTimeout(function(){btn.textContent=old},1100);
   btn.blur();
 });
 
 document.getElementById('clear').addEventListener('click',function(e){
-  H.push(clone(S)); if(H.length > 3000) H.shift();
+  saveHistory();
   S={text:'',l:'',v:'',t:''};
   cyc=null;
   render();
@@ -581,6 +599,11 @@ document.getElementById('clear').addEventListener('click',function(e){
 
 document.getElementById('undo').addEventListener('click',function(e){
   performUndo();
+  e.currentTarget.blur();
+});
+
+document.getElementById('redo').addEventListener('click',function(e){
+  performRedo();
   e.currentTarget.blur();
 });
 
