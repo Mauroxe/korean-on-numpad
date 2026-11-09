@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Korean on Numpad</title>
 <style>
 :root {
@@ -9,21 +10,25 @@
                  radial-gradient(at 90% 90%, #c2e9fb 0px, transparent 50%),
                  radial-gradient(at 50% 50%, #e0c3fc 0px, transparent 50%),
                  #eef2f7;
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.6);
-  --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
   
-  --out-bg: rgba(255, 255, 255, 0.65);
-  --key-bg: rgba(255, 255, 255, 0.55);
-  --key-hover: rgba(255, 255, 255, 0.85);
-  --key-active: rgba(0, 122, 255, 0.15);
-  --key-border: rgba(255, 255, 255, 0.8);
+  --out-bg: rgba(255, 255, 255, 0.9);
+  --key-bg: rgba(255, 255, 255, 0.75);
+  --key-hover: rgba(255, 255, 255, 0.95);
+  --key-active: rgba(0, 122, 255, 0.2);
+  --key-border: rgba(0, 0, 0, 0.12);
   
-  --fg: #1d1d1f;
-  --mute: #6e6e73;
-  --acc: #007aff;
-  --on-bg: rgba(0, 122, 255, 0.2);
-  --on-border: #007aff;
+  --fg: #111113;
+  --mute: #4a4a4e;
+  --acc: #0066cc;
+  --on-bg: rgba(0, 102, 204, 0.22);
+  --on-border: #0066cc;
+
+  --hangul-color: #111113;
+  --label-color: #6e6e73;
+  --del-color: #3a3a3c; /* Cinzento um bocadinho mais suave para a tecla delete */
 
   color-scheme: light;
 }
@@ -34,21 +39,25 @@
                    radial-gradient(at 100% 100%, #0d1b2a 0px, transparent 50%),
                    radial-gradient(at 50% 50%, #2d1b4e 0px, transparent 50%),
                    #0b0d12;
-    --glass-bg: rgba(30, 32, 40, 0.55);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    --glass-bg: rgba(24, 26, 34, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
     
-    --out-bg: rgba(15, 17, 23, 0.6);
-    --key-bg: rgba(255, 255, 255, 0.08);
-    --key-hover: rgba(255, 255, 255, 0.16);
-    --key-active: rgba(10, 132, 255, 0.3);
-    --key-border: rgba(255, 255, 255, 0.15);
+    --out-bg: rgba(15, 17, 23, 0.85);
+    --key-bg: rgba(255, 255, 255, 0.12);
+    --key-hover: rgba(255, 255, 255, 0.22);
+    --key-active: rgba(10, 132, 255, 0.35);
+    --key-border: rgba(255, 255, 255, 0.2);
     
-    --fg: #f5f5f7;
-    --mute: #98989d;
-    --acc: #0a84ff;
-    --on-bg: rgba(10, 132, 255, 0.3);
-    --on-border: #0a84ff;
+    --fg: #ffffff;
+    --mute: #b0b0b5;
+    --acc: #409cff;
+    --on-bg: rgba(64, 156, 255, 0.35);
+    --on-border: #409cff;
+
+    --hangul-color: #ffffff;
+    --label-color: #98989d;
+    --del-color: #d1d1d6; /* Cinzento suave adaptado para o modo escuro */
 
     color-scheme: dark;
   }
@@ -59,21 +68,25 @@
                  radial-gradient(at 100% 100%, #0d1b2a 0px, transparent 50%),
                  radial-gradient(at 50% 50%, #2d1b4e 0px, transparent 50%),
                  #0b0d12;
-  --glass-bg: rgba(30, 32, 40, 0.55);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+  --glass-bg: rgba(24, 26, 34, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
   
-  --out-bg: rgba(15, 17, 23, 0.6);
-  --key-bg: rgba(255, 255, 255, 0.08);
-  --key-hover: rgba(255, 255, 255, 0.16);
-  --key-active: rgba(10, 132, 255, 0.3);
-  --key-border: rgba(255, 255, 255, 0.15);
+  --out-bg: rgba(15, 17, 23, 0.85);
+  --key-bg: rgba(255, 255, 255, 0.12);
+  --key-hover: rgba(255, 255, 255, 0.22);
+  --key-active: rgba(10, 132, 255, 0.35);
+  --key-border: rgba(255, 255, 255, 0.2);
   
-  --fg: #f5f5f7;
-  --mute: #98989d;
-  --acc: #0a84ff;
-  --on-bg: rgba(10, 132, 255, 0.3);
-  --on-border: #0a84ff;
+  --fg: #ffffff;
+  --mute: #b0b0b5;
+  --acc: #409cff;
+  --on-bg: rgba(64, 156, 255, 0.35);
+  --on-border: #409cff;
+
+  --hangul-color: #ffffff;
+  --label-color: #98989d;
+  --del-color: #d1d1d6;
 
   color-scheme: dark;
 }
@@ -94,7 +107,7 @@ body {
   background: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--fg);
-  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", "Noto Sans KR", sans-serif;
+  font: 16.1px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", "Noto Sans KR", sans-serif;
   -webkit-font-smoothing: antialiased;
   display: flex;
   justify-content: center;
@@ -103,72 +116,73 @@ body {
 
 main {
   width: 100%;
-  max-width: 480px;
-  margin: 20px auto;
-  padding: 24px 20px;
+  max-width: 552px;
+  margin: 23px auto;
+  padding: 28px 23px;
   background: var(--glass-bg);
   backdrop-filter: blur(25px) saturate(180%);
   -webkit-backdrop-filter: blur(25px) saturate(180%);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  border-radius: 28px;
   box-shadow: var(--glass-shadow);
 }
 
 h1 {
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
 }
 
 p {
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   color: var(--mute);
-  font-size: 0.88rem;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  line-height: 1.45;
 }
 
 .top-section {
   display: flex;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
 #out {
   flex: 1;
-  min-height: 7rem;
+  min-height: 12rem;
   max-height: 25vh;
   overflow: auto;
   background: var(--out-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: 14px;
-  padding: 12px;
-  font-size: 1.5rem;
-  line-height: 1.4;
+  border: 1px solid var(--key-border);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-size: 1.65rem;
+  line-height: 1.45;
   white-space: pre-wrap;
   word-break: break-all;
   font-family: "SF Pro Text", "Noto Sans KR", sans-serif;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
   transition: border-color 0.2s, box-shadow 0.2s;
+  color: var(--hangul-color);
 }
 
 #out:focus-within {
   border-color: var(--acc);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04), 0 0 0 3px rgba(0, 122, 255, 0.25);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(0, 122, 255, 0.3);
 }
 
 #out .cur {
-  border-bottom: 2px solid var(--acc);
+  border-bottom: 2.5px solid var(--acc);
   background: var(--on-bg);
   border-radius: 2px;
 }
 
 #out .caret {
   display: inline-block;
-  width: 2px;
-  height: 1.25em;
+  width: 2.5px;
+  height: 1.2em;
   vertical-align: text-bottom;
   background: var(--acc);
   border-radius: 1px;
@@ -181,7 +195,7 @@ p {
 .bar {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 9px;
   justify-content: center;
 }
 
@@ -194,23 +208,25 @@ button {
 }
 
 .act {
-  padding: 10px 14px;
+  padding: 12px 18px;
   border: 1px solid var(--key-border);
   background: var(--key-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   white-space: nowrap;
+  min-width: 95px;
+  text-align: center;
 }
 
 .act:hover {
   background: var(--key-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .act:active {
@@ -221,8 +237,8 @@ button {
 .pad {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 54px);
-  gap: 8px;
+  grid-template-rows: repeat(5, 62px);
+  gap: 9px;
 }
 
 .k {
@@ -230,22 +246,22 @@ button {
   background: var(--key-bg);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
-  padding: 4px;
+  gap: 4px;
+  padding: 5px;
   touch-action: manipulation;
   user-select: none;
   transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .k:hover {
   background: var(--key-hover);
-  border-color: var(--glass-border);
+  border-color: var(--acc);
   transform: scale(1.02);
 }
 
@@ -253,30 +269,52 @@ button {
   background: var(--on-bg) !important;
   border-color: var(--on-border) !important;
   transform: scale(0.96);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .k:focus-visible, .act:focus-visible {
-  outline: 2px solid var(--acc);
+  outline: 3px solid var(--acc);
   outline-offset: 2px;
 }
 
 .k small {
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: var(--mute);
-  opacity: 0.8;
+  color: var(--label-color);
 }
 
 .k b {
-  font-size: 1.05rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   font-family: "SF Pro Text", "Noto Sans KR", sans-serif;
+  color: var(--hangul-color);
 }
 
-.k.v b { font-size: 1.3rem; font-weight: 400; }
-.k.u b { font-size: 0.75rem; letter-spacing: 0; font-family: inherit; font-weight: 500; }
+.k.u b {
+  color: var(--fg);
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+/* Cor específica para o símbolo de delete (⌫) */
+.k.del-key b {
+  color: var(--del-color);
+}
+
+.k.v b { font-size: 1.4rem; font-weight: 500; }
+
+#kp b {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#kt b {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
 
 #kp { grid-column: 4; grid-row: 2/4; }
 #kt { grid-column: 4; grid-row: 4/6; }
@@ -285,8 +323,8 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
-  padding: 4px 0;
-  padding-left: 8px;
+  padding: 5px 0;
+  padding-left: 9px;
 }
 #k0 small {
   grid-column: 2;
@@ -300,28 +338,29 @@ button {
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin: 0 0 8px;
+  margin: 0 0 9px;
   letter-spacing: -0.01em;
 }
 
 ul {
   margin: 0;
-  padding-left: 1.2rem;
+  padding-left: 1.4rem;
   color: var(--mute);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
-li { margin-bottom: 4px; }
+li { margin-bottom: 5px; }
 
 code {
   background: var(--key-bg);
   border: 1px solid var(--key-border);
-  border-radius: 6px;
-  padding: 2px 5px;
-  font-size: 0.8em;
+  border-radius: 7px;
+  padding: 3px 7px;
+  font-size: 0.85em;
+  font-weight: 600;
   color: var(--fg);
   font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
 }
@@ -344,7 +383,7 @@ code {
   <button class="k u" id="k-numlock" data-k="NumLock"><small>Num</small><b>#</b></button>
   <button class="k u" data-k="NumpadDivide"><small>/</small><b>?</b></button>
   <button class="k u" data-k="NumpadMultiply"><small>*</small><b>!</b></button>
-  <button class="k u" data-k="NumpadSubtract"><small>−</small><b>⌫</b></button>
+  <button class="k u del-key" data-k="NumpadSubtract"><small>−</small><b>⌫</b></button>
 
   <button class="k v" data-k="Numpad7"><small>7</small><b>ㅣ</b></button>
   <button class="k v" data-k="Numpad8"><small>8</small><b>ㆍ</b></button>
@@ -358,7 +397,7 @@ code {
   <button class="k" data-k="Numpad1"><small>1</small><b>ㅂ ㅍ</b></button>
   <button class="k" data-k="Numpad2"><small>2</small><b>ㅅ ㅎ</b></button>
   <button class="k" data-k="Numpad3"><small>3</small><b>ㅈ ㅊ</b></button>
-  <button class="k u" id="kt" data-k="NumpadEnter"><small>Enter</small><b>↵</b></button>
+  <button class="k u" id="kt" data-k="NumpadEnter"><small>Enter</small><b>⏎</b></button>
 
   <button class="k" id="k0" data-k="Numpad0"><small>0</small><b>ㅇ ㅁ</b></button>
   <button class="k u" data-k="NumpadDecimal"><small>.</small><b>. ,</b></button>
@@ -437,7 +476,6 @@ function press(code){
     return;
   }
 
-  // Se o Num Lock estiver ATIVADO, digita números e símbolos normais (incluindo o sinal de menos)
   if (numLockActive) {
     var normalMap = {
       Numpad0: '0', Numpad1: '1', Numpad2: '2', Numpad3: '3', Numpad4: '4',
@@ -453,7 +491,6 @@ function press(code){
     }
   }
 
-  // Backspace se Num Lock estiver DESATIVADO
   if(code==='NumpadSubtract'||code==='Backspace'){
     cyc=null;
     if(H.length){
