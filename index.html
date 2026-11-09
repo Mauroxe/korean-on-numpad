@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Korean on Numpad</title>
+<style>
+:root {
+  --bg-gradient: radial-gradient(at 10% 10%, #a1c4fd 0px, transparent 50%),
+                 radial-gradient(at 90% 90%, #c2e9fb 0px, transparent 50%),
+                 radial-gradient(at 50% 50%, #e0c3fc 0px, transparent 50%),
+                 #eef2f7;
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  
+  --out-bg: rgba(255, 255, 255, 0.65);
+  --key-bg: rgba(255, 255, 255, 0.55);
+  --key-hover: rgba(255, 255, 255, 0.85);
+  --key-active: rgba(0, 122, 255, 0.15);
+  --key-border: rgba(255, 255, 255, 0.8);
+  
+  --fg: #1d1d1f;
+  --mute: #6e6e73;
+  --acc: #007aff;
+  --on-bg: rgba(0, 122, 255, 0.2);
+  --on-border: #007aff;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-gradient: radial-gradient(at 0% 0%, #1a1c2e 0px, transparent 50%),
+                   radial-gradient(at 100% 100%, #0d1b2a 0px, transparent 50%),
+                   radial-gradient(at 50% 50%, #2d1b4e 0px, transparent 50%),
+                   #0b0d12;
+    --glass-bg: rgba(30, 32, 40, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    
+    --out-bg: rgba(15, 17, 23, 0.6);
+    --key-bg: rgba(255, 255, 255, 0.08);
+    --key-hover: rgba(255, 255, 255, 0.16);
+    --key-active: rgba(10, 132, 255, 0.3);
+    --key-border: rgba(255, 255, 255, 0.15);
+    
+    --fg: #f5f5f7;
+    --mute: #98989d;
+    --acc: #0a84ff;
+    --on-bg: rgba(10, 132, 255, 0.3);
+    --on-border: #0a84ff;
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg-gradient: radial-gradient(at 0% 0%, #1a1c2e 0px, transparent 50%),
+                 radial-gradient(at 100% 100%, #0d1b2a 0px, transparent 50%),
+                 radial-gradient(at 50% 50%, #2d1b4e 0px, transparent 50%),
+                 #0b0d12;
+  --glass-bg: rgba(30, 32, 40, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+  
+  --out-bg: rgba(15, 17, 23, 0.6);
+  --key-bg: rgba(255, 255, 255, 0.08);
+  --key-hover: rgba(255, 255, 255, 0.16);
+  --key-active: rgba(10, 132, 255, 0.3);
+  --key-border: rgba(255, 255, 255, 0.15);
+  
+  --fg: #f5f5f7;
+  --mute: #98989d;
+  --acc: #0a84ff;
+  --on-bg: rgba(10, 132, 255, 0.3);
+  --on-border: #0a84ff;
+
+  color-scheme: dark;
+}
+
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--fg);
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 100%;
+  max-width: 480px;
+  margin: 20px auto;
+  padding: 24px 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+}
+
+h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+p {
+  margin: 0 0 14px;
+  color: var(--mute);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.top-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+#out {
+  flex: 1;
+  min-height: 7rem;
+  max-height: 25vh;
+  overflow: auto;
+  background: var(--out-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: "SF Pro Text", "Noto Sans KR", sans-serif;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#out:focus-within {
+  border-color: var(--acc);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04), 0 0 0 3px rgba(0, 122, 255, 0.25);
+}
+
+#out .cur {
+  border-bottom: 2px solid var(--acc);
+  background: var(--on-bg);
+  border-radius: 2px;
+}
+
+#out .caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.25em;
+  vertical-align: text-bottom;
+  background: var(--acc);
+  border-radius: 1px;
+  animation: bl 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes bl { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { #out .caret { animation: none; } }
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+button {
+  font: inherit;
+  color: var(--fg);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.act {
+  padding: 10px 14px;
+  border: 1px solid var(--key-border);
+  background: var(--key-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  white-space: nowrap;
+}
+
+.act:hover {
+  background: var(--key-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.act:active {
+  transform: translateY(0);
+  background: var(--key-active);
+}
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 54px);
+  gap: 8px;
+}
+
+.k {
+  border: 1px solid var(--key-border);
+  background: var(--key-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 4px;
+  touch-action: manipulation;
+  user-select: none;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.k:hover {
+  background: var(--key-hover);
+  border-color: var(--glass-border);
+  transform: scale(1.02);
+}
+
+.k:active, .k.on {
+  background: var(--on-bg) !important;
+  border-color: var(--on-border) !important;
+  transform: scale(0.96);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.k:focus-visible, .act:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+
+.k small {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--mute);
+  opacity: 0.8;
+}
+
+.k b {
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  font-family: "SF Pro Text", "Noto Sans KR", sans-serif;
+}
+
+.k.v b { font-size: 1.3rem; font-weight: 400; }
+.k.u b { font-size: 0.75rem; letter-spacing: 0; font-family: inherit; font-weight: 500; }
+
+#kp { grid-column: 4; grid-row: 2/4; }
+#kt { grid-column: 4; grid-row: 4/6; }
+#k0 { 
+  grid-column: 1/3; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  padding: 4px 0;
+  padding-left: 8px;
+}
+#k0 small {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+}
+#k0 b {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: center;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--mute);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+li { margin-bottom: 4px; }
+
+code {
+  background: var(--key-bg);
+  border: 1px solid var(--key-border);
+  border-radius: 6px;
+  padding: 2px 5px;
+  font-size: 0.8em;
+  color: var(--fg);
+  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
+}
+</style>
+</head>
+<body>
+<main>
+<h1>Korean on Numpad</h1>
+<p>Type using your PC's numpad or click on the virtual buttons</p>
+
+<div class="top-section">
+  <div id="out" aria-live="polite"></div>
+  <div class="bar">
+    <button class="act" id="copy">Copy</button>
+    <button class="act" id="clear">Clear</button>
+  </div>
+</div>
+
+<div class="pad" id="pad">
+  <button class="k u" id="k-numlock" data-k="NumLock"><small>Num</small><b>#</b></button>
+  <button class="k u" data-k="NumpadDivide"><small>/</small><b>?</b></button>
+  <button class="k u" data-k="NumpadMultiply"><small>*</small><b>!</b></button>
+  <button class="k u" data-k="NumpadSubtract"><small>−</small><b>⌫</b></button>
+
+  <button class="k v" data-k="Numpad7"><small>7</small><b>ㅣ</b></button>
+  <button class="k v" data-k="Numpad8"><small>8</small><b>ㆍ</b></button>
+  <button class="k v" data-k="Numpad9"><small>9</small><b>ㅡ</b></button>
+  <button class="k u" id="kp" data-k="NumpadAdd"><small>+</small><b>␣</b></button>
+
+  <button class="k" data-k="Numpad4"><small>4</small><b>ㄱ ㅋ </b></button>
+  <button class="k" data-k="Numpad5"><small>5</small><b>ㄴ ㄹ</b></button>
+  <button class="k" data-k="Numpad6"><small>6</small><b>ㄷ ㅌ</b></button>
+
+  <button class="k" data-k="Numpad1"><small>1</small><b>ㅂ ㅍ</b></button>
+  <button class="k" data-k="Numpad2"><small>2</small><b>ㅅ ㅎ</b></button>
+  <button class="k" data-k="Numpad3"><small>3</small><b>ㅈ ㅊ</b></button>
+  <button class="k u" id="kt" data-k="NumpadEnter"><small>Enter</small><b>↵</b></button>
+
+  <button class="k" id="k0" data-k="Numpad0"><small>0</small><b>ㅇ ㅁ</b></button>
+  <button class="k u" data-k="NumpadDecimal"><small>.</small><b>, .</b></button>
+</div>
+
+<script>
+(function(){
+var L=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+var V=['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'];
+var T=['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+var VT={'1':'ㅣ','2':'ㆍ','22':'ㆍㆍ','3':'ㅡ','12':'ㅏ','21':'ㅓ','23':'ㅗ','32':'ㅜ','122':'ㅑ','221':'ㅕ','223':'ㅛ','322':'ㅠ','121':'ㅐ','211':'ㅔ','1221':'ㅒ','2211':'ㅖ','2312':'ㅘ','23121':'ㅙ','231':'ㅚ','3221':'ㅝ','32211':'ㅞ','321':'ㅟ','31':'ㅢ'};
+var CF={'ㄱㅅ':'ㄳ','ㄴㅈ':'ㄵ','ㄴㅎ':'ㄶ','ㄹㄱ':'ㄺ','ㄹㅁ':'ㄻ','ㄹㅂ':'ㄼ','ㄹㅅ':'ㄽ','ㄹㅌ':'ㄾ','ㄹㅍ':'ㄿ','ㄹㅎ':'ㅀ','ㅂㅅ':'ㅄ'};
+var CY={Numpad4:['ㄱ','ㅋ','ㄲ'],Numpad5:['ㄴ','ㄹ'],Numpad6:['ㄷ','ㅌ','ㄸ'],Numpad1:['ㅂ','ㅍ','ㅃ'],Numpad2:['ㅅ','ㅎ','ㅆ'],Numpad3:['ㅈ','ㅊ','ㅉ'],Numpad0:['ㅇ','ㅁ'],NumpadDivide:['?'],NumpadMultiply:['!'],NumpadDecimal:[',','.']};
+var VK={Numpad7:'1',Numpad8:'2',Numpad9:'3'};
+var S={text:'',l:'',v:'',t:''},H=[],cyc=null;
+var TIMEOUT_MS=1000;
+var numLockActive = false;
+
+function isV(v){return V.indexOf(VT[v])>=0}
+function comp(s){
+  if(!s.l&&!s.v)return '';
+  if(!s.v)return s.l;
+  var vv=VT[s.v];
+  if(!isV(s.v))return s.l+vv;
+  if(!s.l)return vv;
+  var ti=T.indexOf(s.t.length==2?CF[s.t]:s.t);
+  return String.fromCharCode(0xAC00+(L.indexOf(s.l)*21+V.indexOf(vv))*28+ti);
+}
+function commit(s){s.text+=comp(s);s.l=s.v=s.t=''}
+function cons(s,c){
+  if(!s.l&&!s.v){s.l=c;return}
+  if(s.v&&!isV(s.v)){commit(s);s.l=c;return}
+  if(s.v&&s.l){
+    if(!s.t){if(T.indexOf(c)>0){s.t=c;return}}
+    else if(s.t.length==1&&CF[s.t+c]){s.t+=c;return}
+  }
+  commit(s);s.l=c;
+}
+function vow(s,k){
+  if(s.t){
+    var m;
+    if(s.t.length==2){m=s.t.charAt(1);s.t=s.t.charAt(0)}else{m=s.t;s.t=''}
+    commit(s);s.l=m;s.v=k;return;
+  }
+  var n=s.v+k;
+  if(VT[n]){s.v=n;return}
+  commit(s);s.v=k;
+}
+function put(s,ch){commit(s);s.text+=ch}
+function clone(s){return {text:s.text,l:s.l,v:s.v,t:s.t}}
+
+var out=document.getElementById('out');
+function render(){
+  out.textContent='';
+  out.appendChild(document.createTextNode(S.text));
+  var c=comp(S);
+  if(c){var sp=document.createElement('span');sp.className='cur';sp.textContent=c;out.appendChild(sp)}
+  var cr=document.createElement('span');cr.className='caret';out.appendChild(cr);
+  out.scrollTop=out.scrollHeight;
+}
+
+function updateNumLockUI() {
+  var btn = document.getElementById('k-numlock');
+  if (numLockActive) {
+    btn.classList.add('on');
+  } else {
+    btn.classList.remove('on');
+  }
+}
+
+function press(code){
+  if (code === 'NumLock') {
+    numLockActive = !numLockActive;
+    updateNumLockUI();
+    cyc = null;
+    return;
+  }
+
+  // Se o Num Lock estiver ATIVADO, digita números e símbolos normais (incluindo o sinal de menos)
+  if (numLockActive) {
+    var normalMap = {
+      Numpad0: '0', Numpad1: '1', Numpad2: '2', Numpad3: '3', Numpad4: '4',
+      Numpad5: '5', Numpad6: '6', Numpad7: '7', Numpad8: '8', Numpad9: '9',
+      NumpadAdd: '+', NumpadSubtract: '-', NumpadMultiply: '*', NumpadDivide: '/',
+      NumpadDecimal: '.'
+    };
+    if (normalMap[code] !== undefined) {
+      H.push(clone(S));if(H.length>3000)H.shift();
+      put(S, normalMap[code]);
+      render();
+      return;
+    }
+  }
+
+  // Backspace se Num Lock estiver DESATIVADO
+  if(code==='NumpadSubtract'||code==='Backspace'){
+    cyc=null;
+    if(H.length){
+      S=H.pop();
+    } else {
+      if(S.t) { S.t = S.t.slice(0, -1); }
+      else if(S.v) { S.v = S.v.slice(0, -1); }
+      else if(S.l) { S.l = ''; }
+      else if(S.text.length > 0) { S.text = S.text.slice(0, -1); }
+    }
+    render();
+    return;
+  }
+
+  var now=Date.now(),set=CY[code];
+  if(set){
+    if(cyc&&cyc.code===code&&now-cyc.ts<TIMEOUT_MS&&H.length){
+      cyc.i=(cyc.i+1)%set.length;cyc.ts=now;S=clone(H[H.length-1]);
+    }else{
+      H.push(clone(S));if(H.length>3000)H.shift();
+      cyc={code:code,i:0,ts:now};
+    }
+    var ch=set[cyc.i];
+    if(code==='NumpadMultiply'||code==='NumpadDivide'||code==='NumpadDecimal')put(S,ch);else cons(S,ch);
+    render();return;
+  }
+  cyc=null;
+  H.push(clone(S));if(H.length>3000)H.shift();
+  if(VK[code])vow(S,VK[code]);
+  else if(code==='NumpadAdd'||code==='Space')put(S,' ');
+  else if(code==='NumpadEnter'||code==='Enter')put(S,'\n');
+  render();
+}
+
+var HANDLED={Numpad0:1,Numpad1:1,Numpad2:1,Numpad3:1,Numpad4:1,Numpad5:1,Numpad6:1,Numpad7:1,Numpad8:1,Numpad9:1,NumpadAdd:1,NumpadSubtract:1,NumpadMultiply:1,NumpadDivide:1,NumpadDecimal:1,NumLock:1};
+var MAIN={Space:1,Enter:1,NumpadEnter:1,Backspace:1};
+function flash(code){
+  var b=document.querySelector('[data-k="'+code+'"]');
+  if(!b)return;b.classList.add('on');setTimeout(function(){if(code!=='NumLock'||!numLockActive)b.classList.remove('on')},130);
+}
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey||e.altKey||e.metaKey)return;
+  var code=e.code,tag=e.target.tagName;
+  if(HANDLED[code]){}
+  else if(MAIN[code]&&tag!=='BUTTON'&&tag!=='INPUT'){}
+  else return;
+  e.preventDefault();
+  if(e.repeat&&code!=='NumpadSubtract'&&code!=='Backspace')return;
+  press(code);flash(code);
+});
+document.getElementById('pad').addEventListener('mousedown',function(e){e.preventDefault()});
+document.getElementById('pad').addEventListener('click',function(e){
+  var b=e.target.closest('[data-k]');
+  if(b){
+    var code = b.getAttribute('data-k');
+    press(code);
+    if(code !== 'NumLock') flash(code);
+  }
+});
+
+function fullText(){return S.text+comp(S)}
+document.getElementById('copy').addEventListener('click',function(e){
+  var t=fullText(),btn=e.currentTarget;
+  function fb(){
+    var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy')}catch(x){}
+    document.body.removeChild(ta);
+  }
+  try{navigator.clipboard.writeText(t).catch(fb)}catch(x){fb()}
+  var old=btn.textContent;btn.textContent='Copied';
+  setTimeout(function(){btn.textContent=old},1100);
+  btn.blur();
+});
+document.getElementById('clear').addEventListener('click',function(e){
+  S={text:'',l:'',v:'',t:''};H=[];cyc=null;render();e.currentTarget.blur();
+});
+
+updateNumLockUI();
+render();
+})();
+</script>
+</body>
+</html>
